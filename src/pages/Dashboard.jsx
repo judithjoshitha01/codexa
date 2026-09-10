@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   CheckCircle2,
@@ -190,13 +191,12 @@ function Dashboard() {
               </p>
             </div>
 
-            <a
-              href="/Projects"
-              className="flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700"
+            <Link
+                to="/projects"
+                className="text-sm font-medium text-blue-600 hover:text-blue-700"
             >
-              View all
-              <ArrowUpRight size={14} />
-            </a>
+                View all
+            </Link>
           </div>
 
           <div className="divide-y divide-slate-100">
