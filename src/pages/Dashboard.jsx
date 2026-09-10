@@ -191,7 +191,7 @@ function Dashboard() {
             </div>
 
             <a
-              href="/projects"
+              href="/Projects"
               className="flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700"
             >
               View all
