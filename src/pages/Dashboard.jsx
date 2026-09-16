@@ -102,102 +102,50 @@ function Dashboard() {
   };
 
   return (
-    <div className="relative min-h-screen space-y-6 overflow-hidden bg-[#F8F6F1] pb-10">
+    <div className="space-y-6 pb-8">
 
-      {/* =====================================================
-          SUBTLE BACKGROUND DECORATION
-      ====================================================== */}
+      {/* HERO */}
+      <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-sky-100/70 blur-3xl" />
 
-      <div className="pointer-events-none absolute -left-32 top-24 h-72 w-72 rounded-full bg-[#EDE5D6]/50 blur-3xl" />
-
-      <div className="pointer-events-none absolute -right-20 top-0 h-80 w-80 rounded-full bg-[#F1EBDD]/60 blur-3xl" />
-
-      {/* =====================================================
-          HERO
-      ====================================================== */}
-
-      <section className="relative overflow-hidden rounded-[30px] border border-[#E8E2D8] bg-[#FFFDF9] shadow-[0_12px_40px_rgba(72,62,48,0.06)]">
-
-        {/* Decorative circle */}
-
-        <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full border-[38px] border-[#F3EEE5]" />
-
-        <div className="pointer-events-none absolute bottom-[-70px] right-40 h-40 w-40 rounded-full bg-[#EFE7D8]/60 blur-3xl" />
-
-        <div className="relative p-6 sm:p-8 lg:p-10">
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
-
-            {/* LEFT */}
-
-            <div className="max-w-2xl">
-
-              {/* Badge */}
-
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#E6DFD3] bg-[#F8F5EF] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#837969]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#B29A76]" />
-                Developer Workspace
-              </div>
-
-              <h1 className="text-3xl font-bold tracking-[-0.035em] text-[#292722] sm:text-4xl">
-                Welcome back,{" "}
-                <span className="text-[#8D7654]">{firstName}</span>
-              </h1>
-
-              <p className="mt-3 max-w-xl text-sm leading-6 text-[#817A6E] sm:text-[15px]">
-                Track your projects, skills and development progress from one
-                focused workspace.
-              </p>
-
-              {/* Accent line */}
-
-              <div className="mt-6 flex items-center gap-2">
-                <div className="h-[2px] w-14 rounded-full bg-[#B49A72]" />
-                <div className="h-[2px] w-3 rounded-full bg-[#D5C5A9]" />
-              </div>
+        <div className="relative flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div className="max-w-2xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-100 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-600">
+              Developer Workspace
             </div>
 
-            {/* PORTFOLIO HEALTH */}
+            <h1 className="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+              Welcome back, {firstName}
+            </h1>
 
-            <div className="relative min-w-[215px] rounded-2xl border border-[#E6DFD4] bg-[#F9F6F0] p-5">
+            <p className="mt-2 text-sm leading-6 text-slate-500 sm:text-[15px]">
+              Track your projects, skills and development progress from one
+              workspace.
+            </p>
+          </div>
 
-              <div className="absolute right-4 top-4">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8E0D3] bg-[#FFFDF9] text-[#9C835F] shadow-sm">
-                  <TrendingUp size={16} />
-                </div>
-              </div>
+          <div className="hidden rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 sm:block">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              Portfolio health
+            </p>
 
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#A39A8C]">
-                Portfolio health
-              </p>
+            <div className="mt-1 flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
 
-              <div className="mt-4 flex items-center gap-2">
-
-                <span className="h-2.5 w-2.5 rounded-full bg-[#B49A72]" />
-
-                <span className="text-sm font-bold text-[#3A352E]">
-                  {stats.completionRate >= 70
-                    ? "Excellent"
-                    : stats.completionRate >= 40
-                    ? "Growing"
-                    : "Getting started"}
-                </span>
-
-              </div>
-
-              <p className="mt-2 text-xs leading-5 text-[#91897D]">
-                Based on your current project completion.
-              </p>
+              <span className="text-sm font-semibold text-slate-700">
+                {stats.completionRate >= 70
+                  ? "Excellent"
+                  : stats.completionRate >= 40
+                  ? "Growing"
+                  : "Getting started"}
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          STATS
-      ====================================================== */}
-
+      {/* STATS */}
       <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-
         <StatCard
           label="Projects"
           value={stats.total}
@@ -225,136 +173,97 @@ function Dashboard() {
           description="Unique technologies"
           icon={Code2}
         />
-
       </section>
 
-      {/* =====================================================
-          MAIN GRID
-      ====================================================== */}
+      {/* MAIN GRID */}
+      <section className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
 
-      <section className="grid gap-6 xl:grid-cols-[1.45fr_1fr]">
-
-        {/* =================================================
-            RECENT PROJECTS
-        ================================================== */}
-
-        <div className="overflow-hidden rounded-[30px] border border-[#E7E1D7] bg-[#FFFDF9] shadow-[0_10px_35px_rgba(72,62,48,0.05)]">
-
-          <div className="flex items-center justify-between border-b border-[#EEE9E0] px-5 py-5 sm:px-6">
-
+        {/* RECENT PROJECTS */}
+        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <div className="flex items-center justify-between border-b border-slate-100 px-5 py-5 sm:px-6">
             <div>
-              <div className="flex items-center gap-2">
+              <h2 className="font-semibold text-slate-900">
+                Recent Projects
+              </h2>
 
-                <h2 className="font-semibold tracking-tight text-[#302C26]">
-                  Recent Projects
-                </h2>
-
-                <span className="rounded-md bg-[#F1ECE3] px-2 py-0.5 text-[9px] font-bold text-[#8D8272]">
-                  {recentProjects.length}
-                </span>
-
-              </div>
-
-              <p className="mt-1 text-xs text-[#A39A8D]">
+              <p className="mt-1 text-xs text-slate-400">
                 Your latest work
               </p>
             </div>
 
             <Link
-              to="/projects"
-              className="group flex items-center gap-1 text-xs font-semibold text-[#927B5B] transition hover:text-[#6F5B40]"
+                to="/projects"
+                className="text-sm font-medium text-blue-600 hover:text-blue-700"
             >
-              View all
-
-              <ArrowUpRight
-                size={14}
-                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
+                View all
             </Link>
           </div>
 
-          <div className="divide-y divide-[#EEE9E0]">
-
+          <div className="divide-y divide-slate-100">
             {recentProjects.length > 0 ? (
               recentProjects.map((project) => {
-
                 const technologies = getTech(project);
 
                 return (
                   <div
                     key={project.id}
-                    className="group px-5 py-5 transition duration-300 hover:bg-[#FAF8F3] sm:px-6"
+                    className="group px-5 py-5 transition hover:bg-slate-50/70 sm:px-6"
                   >
-
                     <div className="flex items-start justify-between gap-3">
-
-                      <div className="flex min-w-0 gap-3.5">
-
-                        {/* Project icon */}
-
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#E9E2D7] bg-[#F8F5EF] text-[#8E8270] transition duration-300 group-hover:border-[#DCCDB7] group-hover:bg-[#F1EBDD] group-hover:text-[#806B4D]">
+                      <div className="flex min-w-0 gap-3">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600">
                           <Layers3 size={18} />
                         </div>
 
                         <div className="min-w-0">
-
-                          <h3 className="truncate text-sm font-semibold text-[#3A352E]">
+                          <h3 className="truncate text-sm font-semibold text-slate-800">
                             {project.title}
                           </h3>
 
-                          <p className="mt-1 line-clamp-1 text-xs leading-5 text-[#9A9184]">
+                          <p className="mt-1 line-clamp-1 text-xs text-slate-400">
                             {project.description ||
                               "No description available."}
                           </p>
-
                         </div>
                       </div>
 
                       <StatusBadge status={project.status} />
                     </div>
 
-                    <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pl-0 sm:pl-[58px]">
-
+                    <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                       <div className="flex flex-wrap gap-1.5">
-
                         {technologies.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="rounded-md border border-[#E8E1D7] bg-[#F9F6F0] px-2 py-1 text-[10px] font-medium text-[#807568]"
+                            className="rounded-md bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-500"
                           >
                             {tech}
                           </span>
                         ))}
-
                       </div>
 
-                      <div className="flex items-center gap-4">
-
-                        {project.github && (
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-1.5 text-xs text-[#9B9286] transition hover:text-[#403A31]"
-                          >
-                            <GitBranch size={13} />
-                            Repository
-                          </a>
-                        )}
-
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-800"
+                        >
+                          <GitBranch size={13} />
+                          Repository
+                        </a>
+                      )}
                         {project.live && (
-                          <a
-                            href={project.live}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-1.5 text-xs text-[#9B9286] transition hover:text-[#806B4D]"
-                          >
-                            <ExternalLink size={13} />
-                            Live Demo
-                          </a>
-                        )}
-
-                      </div>
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-600"
+                        >
+                          <ExternalLink size={13} />
+                          Live Demo
+                        </a>
+                      )}
                     </div>
                   </div>
                 );
@@ -362,181 +271,118 @@ function Dashboard() {
             ) : (
               <EmptyProjects />
             )}
-
           </div>
         </div>
 
-        {/* =================================================
-            DEVELOPMENT PROGRESS
-        ================================================== */}
+        {/* PROGRESS */}
+        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div className="flex items-start justify-between">
+            <div>
+              <h2 className="font-semibold text-slate-900">
+                Development Progress
+              </h2>
 
-        <div className="relative overflow-hidden rounded-[30px] border border-[#E7E1D7] bg-[#FFFDF9] p-5 shadow-[0_10px_35px_rgba(72,62,48,0.05)] sm:p-6">
+              <p className="mt-1 text-xs text-slate-400">
+                Project completion overview
+              </p>
+            </div>
 
-          {/* Background decoration */}
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+              <TrendingUp size={17} />
+            </div>
+          </div>
 
-          <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#F2EBDE]/70 blur-2xl" />
+          <div className="mt-8 flex items-end justify-between">
+            <div>
+              <p className="text-4xl font-bold tracking-tight text-slate-950">
+                {stats.completionRate}%
+              </p>
 
-          <div className="relative">
+              <p className="mt-1 text-xs text-slate-400">
+                completion rate
+              </p>
+            </div>
 
-            <div className="flex items-start justify-between">
+            <div className="text-right">
+              <p className="text-sm font-semibold text-slate-700">
+                {stats.completed}/{stats.total}
+              </p>
+
+              <p className="text-[11px] text-slate-400">
+                projects
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 h-3 overflow-hidden rounded-full bg-slate-100">
+            <div
+              className="h-full rounded-full bg-sky-500 transition-all duration-700"
+              style={{
+                width: `${stats.completionRate}%`,
+              }}
+            />
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <ProgressItem
+              label="Completed"
+              value={stats.completed}
+              total={stats.total}
+            />
+
+            <ProgressItem
+              label="In Progress"
+              value={stats.inProgress}
+              total={stats.total}
+            />
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-slate-50 p-4">
+            <div className="flex gap-3">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-sky-600 shadow-sm">
+                <Sparkles size={15} />
+              </div>
 
               <div>
-                <h2 className="font-semibold tracking-tight text-[#302C26]">
-                  Development Progress
-                </h2>
-
-                <p className="mt-1 text-xs text-[#A39A8D]">
-                  Project completion overview
-                </p>
-              </div>
-
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6DDCF] bg-[#F5F0E7] text-[#927B5B]">
-                <TrendingUp size={17} />
-              </div>
-
-            </div>
-
-            {/* Percentage */}
-
-            <div className="mt-8 flex items-end justify-between">
-
-              <div>
-                <p className="text-5xl font-bold tracking-[-0.05em] text-[#292722]">
-                  {stats.completionRate}
-                  <span className="text-2xl text-[#A88D67]">
-                    %
-                  </span>
+                <p className="text-xs font-semibold text-slate-700">
+                  Workspace insight
                 </p>
 
-                <p className="mt-1 text-xs text-[#A39A8D]">
-                  completion rate
+                <p className="mt-1 text-xs leading-5 text-slate-400">
+                  {stats.total === 0
+                    ? "Add your first project to start building your portfolio."
+                    : stats.inProgress > 0
+                    ? `You have ${stats.inProgress} project${
+                        stats.inProgress > 1 ? "s" : ""
+                      } currently in progress.`
+                    : "Great work! Your current projects are completed."}
                 </p>
               </div>
-
-              <div className="text-right">
-                <p className="text-sm font-bold text-[#403A31]">
-                  {stats.completed}/{stats.total}
-                </p>
-
-                <p className="text-[11px] text-[#A39A8D]">
-                  projects
-                </p>
-              </div>
-
             </div>
-
-            {/* Main progress */}
-
-            <div className="mt-7">
-
-              <div className="h-3 overflow-hidden rounded-full bg-[#EEE9E0]">
-
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#A88C65] to-[#C8B28E] transition-all duration-700"
-                  style={{
-                    width: `${stats.completionRate}%`,
-                  }}
-                />
-
-              </div>
-
-            </div>
-
-            {/* Small progress cards */}
-
-            <div className="mt-6 grid grid-cols-2 gap-3">
-
-              <ProgressItem
-                label="Completed"
-                value={stats.completed}
-                total={stats.total}
-                accent="bg-[#A78C66]"
-              />
-
-              <ProgressItem
-                label="In Progress"
-                value={stats.inProgress}
-                total={stats.total}
-                accent="bg-[#C6AF89]"
-              />
-
-            </div>
-
-            {/* Insight */}
-
-            <div className="mt-6 rounded-2xl border border-[#E9E2D7] bg-[#F9F6F0] p-4">
-
-              <div className="flex gap-3">
-
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#E9E2D7] bg-[#FFFDF9] text-[#9A805D] shadow-sm">
-                  <Sparkles size={15} />
-                </div>
-
-                <div>
-
-                  <p className="text-xs font-bold text-[#4A4339]">
-                    Workspace insight
-                  </p>
-
-                  <p className="mt-1 text-xs leading-5 text-[#958B7D]">
-                    {stats.total === 0
-                      ? "Add your first project to start building your portfolio."
-                      : stats.inProgress > 0
-                      ? `You have ${stats.inProgress} project${
-                          stats.inProgress > 1 ? "s" : ""
-                        } currently in progress.`
-                      : "Great work! Your current projects are completed."}
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          PROFILE SNAPSHOT
-      ====================================================== */}
-
-      <section className="relative overflow-hidden rounded-[30px] border border-[#E7E1D7] bg-[#FFFDF9] p-5 shadow-[0_10px_35px_rgba(72,62,48,0.05)] sm:p-6">
-
-        <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-[#F1EBDD]/60 blur-3xl" />
-
-        <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-
+      {/* PROFILE SNAPSHOT */}
+      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
-
-            {/* Avatar */}
-
-            <div className="relative">
-
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#302C26] text-lg font-bold text-[#F8F3E9] shadow-lg">
-                {firstName.charAt(0).toUpperCase()}
-              </div>
-
-              <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-[3px] border-[#FFFDF9] bg-[#B49A72]" />
-
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-lg font-bold text-white">
+              {firstName.charAt(0).toUpperCase()}
             </div>
 
             <div>
-
-              <p className="text-sm font-bold text-[#332F29]">
+              <p className="text-sm font-bold text-slate-900">
                 {profile?.name || "Your Profile"}
               </p>
 
-              <p className="mt-1 text-xs text-[#9B9285]">
+              <p className="mt-1 text-xs text-slate-400">
                 {profile?.role || "Frontend Developer"}
               </p>
-
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 sm:gap-10">
-
+          <div className="grid grid-cols-3 gap-6">
             <MiniMetric
               label="Projects"
               value={stats.total}
@@ -551,17 +397,12 @@ function Dashboard() {
               label="Progress"
               value={`${stats.completionRate}%`}
             />
-
           </div>
         </div>
       </section>
     </div>
   );
 }
-
-/* =========================================================
-   STAT CARD
-========================================================= */
 
 function StatCard({
   label,
@@ -570,143 +411,102 @@ function StatCard({
   icon: Icon,
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-[#E7E1D7] bg-[#FFFDF9] p-4 shadow-[0_8px_25px_rgba(72,62,48,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(72,62,48,0.08)] sm:p-5">
-
-      {/* Decorative corner */}
-
-      <div className="pointer-events-none absolute -right-5 -top-5 h-16 w-16 rounded-full bg-[#F4EFE6] opacity-0 transition duration-300 group-hover:opacity-100" />
-
-      <div className="relative flex items-start justify-between gap-2">
-
+    <div className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
+      <div className="flex items-start justify-between gap-2">
         <div>
-
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#A39A8C] sm:text-[11px]">
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 sm:text-[11px]">
             {label}
           </p>
 
-          <p className="mt-2 text-2xl font-bold tracking-tight text-[#292722] sm:text-3xl">
+          <p className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
             {value}
           </p>
-
         </div>
 
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#E7DFD2] bg-[#F5F0E7] text-[#8F7857] transition duration-300 group-hover:scale-105">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600">
           <Icon size={17} />
         </div>
-
       </div>
 
-      <p className="relative mt-3 text-[10px] text-[#9B9286] sm:text-[11px]">
+      <p className="mt-3 text-[10px] text-slate-400 sm:text-[11px]">
         {description}
       </p>
-
     </div>
   );
 }
-
-/* =========================================================
-   STATUS BADGE
-========================================================= */
 
 function StatusBadge({ status }) {
   const completed = status === "Completed";
 
   return (
     <span
-      className={`shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-bold ${
+      className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold ${
         completed
-          ? "border-[#DCD2C2] bg-[#F2EEE6] text-[#806D52]"
-          : "border-[#E5D8C3] bg-[#F8F1E6] text-[#9A7D51]"
+          ? "bg-emerald-50 text-emerald-600"
+          : "bg-amber-50 text-amber-600"
       }`}
     >
-      <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-current" />
       {status || "In Progress"}
     </span>
   );
 }
 
-/* =========================================================
-   PROGRESS ITEM
-========================================================= */
-
-function ProgressItem({
-  label,
-  value,
-  total,
-  accent,
-}) {
+function ProgressItem({ label, value, total }) {
   const percentage =
     total > 0 ? Math.round((value / total) * 100) : 0;
 
   return (
-    <div className="rounded-2xl border border-[#E9E3D9] bg-[#FAF8F3] p-3.5">
-
-      <div className="flex items-center justify-between">
-
-        <span className="text-[11px] font-medium text-[#81786B]">
+    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-3">
+      <div className="flex justify-between">
+        <span className="text-[11px] text-slate-500">
           {label}
         </span>
 
-        <span className="text-xs font-bold text-[#443E35]">
+        <span className="text-xs font-bold text-slate-700">
           {value}
         </span>
-
       </div>
 
-      <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-[#E8E2D8]">
-
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <div
-          className={`h-full rounded-full transition-all duration-500 ${accent}`}
+          className="h-full rounded-full bg-slate-700 transition-all duration-500"
           style={{
             width: `${percentage}%`,
           }}
         />
-
       </div>
     </div>
   );
 }
-
-/* =========================================================
-   MINI METRIC
-========================================================= */
 
 function MiniMetric({ label, value }) {
   return (
     <div>
-
-      <p className="text-lg font-bold tracking-tight text-[#332F29]">
+      <p className="text-lg font-bold text-slate-900">
         {value}
       </p>
 
-      <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A39A8D]">
+      <p className="mt-0.5 text-[10px] uppercase tracking-wider text-slate-400">
         {label}
       </p>
-
     </div>
   );
 }
 
-/* =========================================================
-   EMPTY PROJECTS
-========================================================= */
-
 function EmptyProjects() {
   return (
-    <div className="flex min-h-64 flex-col items-center justify-center px-6 text-center">
-
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E8E1D6] bg-[#F8F5EF] text-[#9C9284]">
-        <FolderKanban size={21} />
+    <div className="flex min-h-56 flex-col items-center justify-center px-6 text-center">
+      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+        <FolderKanban size={20} />
       </div>
 
-      <h3 className="mt-4 text-sm font-bold text-[#4A443B]">
+      <h3 className="mt-4 text-sm font-semibold text-slate-700">
         No projects yet
       </h3>
 
-      <p className="mt-1 max-w-xs text-xs leading-5 text-[#9A9185]">
+      <p className="mt-1 max-w-xs text-xs leading-5 text-slate-400">
         Add your first project and it will appear here.
       </p>
-
     </div>
   );
 }
