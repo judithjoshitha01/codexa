@@ -97,10 +97,7 @@ function Sidebar() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (
-        (e.ctrlKey || e.metaKey) &&
-        e.key.toLowerCase() === "k"
-      ) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setSearchOpen(true);
       }
@@ -164,14 +161,13 @@ function Sidebar() {
       .includes(search.toLowerCase())
   );
 
-  const skillResults =
-    profile?.skills
-      ?.filter((skill) =>
-        skill
-          .toLowerCase()
-          .includes(search.toLowerCase())
-      )
-      .slice(0, 5) || [];
+  const skillResults = profile?.skills
+    ?.filter((skill) =>
+      skill
+        .toLowerCase()
+        .includes(search.toLowerCase())
+    )
+    .slice(0, 5) || [];
 
   const hasResults =
     search.trim() &&
@@ -192,27 +188,22 @@ function Sidebar() {
 
   return (
     <>
-      {/* =====================================================
-          MOBILE HEADER
-      ====================================================== */}
-
-      <header className="fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between border-b border-[#E8E2D8] bg-[#FFFDF9] px-4 shadow-[0_4px_18px_rgba(72,62,48,0.04)] lg:hidden">
-
+      {/* Mobile Header */}
+      <header className="fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between border-b border-slate-200 bg-[#b8a98b] px-4 lg:hidden">
         <div>
-          <h1 className="text-lg font-bold tracking-tight text-[#292722]">
+          <h1 className="text-lg font-bold tracking-tight text-slate-900">
             Codexa
           </h1>
 
-          <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#9E9588]">
+          <p className="text-[9px] font-medium uppercase tracking-widest text-slate-400">
             Developer Workspace
           </p>
         </div>
 
         <div className="flex items-center gap-1">
-
           <button
             onClick={() => setSearchOpen(true)}
-            className="rounded-xl p-2 text-[#81786B] transition hover:bg-[#F3EFE7] hover:text-[#5E5140]"
+            className="rounded-lg p-2 text-slate-500 hover:bg-slate-100"
             aria-label="Search"
           >
             <Search size={20} />
@@ -220,7 +211,7 @@ function Sidebar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-xl p-2 text-[#6F665A] transition hover:bg-[#F3EFE7]"
+            className="rounded-lg p-2 text-slate-600 hover:bg-slate-100"
             aria-label="Toggle navigation"
           >
             {mobileOpen ? (
@@ -229,21 +220,14 @@ function Sidebar() {
               <Menu size={22} />
             )}
           </button>
-
         </div>
       </header>
 
-      {/* =====================================================
-          MOBILE MENU
-      ====================================================== */}
-
+      {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-[#292722]/20 backdrop-blur-[2px] lg:hidden">
-
-          <div className="absolute right-0 top-16 w-64 border-b border-l border-[#E7E0D5] bg-[#FFFDF9] p-4 shadow-2xl">
-
+        <div className="fixed inset-0 z-40 bg-black/20 lg:hidden">
+          <div className="absolute right-0 top-16 w-64 border-b border-l border-slate-200 bg-white p-4 shadow-xl">
             <nav className="space-y-1">
-
               {navigation.map(
                 ({ name, path, icon: Icon }) => (
                   <NavLink
@@ -253,10 +237,10 @@ function Sidebar() {
                       setMobileOpen(false)
                     }
                     className={({ isActive }) =>
-                      `group flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition ${
+                      `flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition ${
                         isActive
-                          ? "bg-[#F0E9DC] text-[#806B4D] shadow-sm"
-                          : "text-[#777064] hover:bg-[#F8F5EF] hover:text-[#39342D]"
+                          ? "bg-sky-50 text-sky-600"
+                          : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
                       }`
                     }
                   >
@@ -268,121 +252,78 @@ function Sidebar() {
                             isActive ? 2.3 : 2
                           }
                         />
-
                         <span>{name}</span>
-
-                        {isActive && (
-                          <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[#B49A72]" />
-                        )}
                       </>
                     )}
                   </NavLink>
                 )
               )}
-
             </nav>
 
-            {/* Mobile User */}
-
-            <div className="mt-4 border-t border-[#ECE6DC] pt-4">
-
-              <div className="flex items-center gap-3 rounded-xl border border-[#E9E2D7] bg-[#F8F5EF] p-3">
-
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#302C26] text-sm font-bold text-[#F8F3E9]">
-                  {getInitial(profile?.name)}
+            <div className="mt-4 border-t border-slate-100 pt-4">
+              <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold text-white">
+                  {getInitial(
+                    profile?.name
+                  )}
                 </div>
 
                 <div className="min-w-0">
-
-                  <p className="truncate text-sm font-semibold text-[#3B362F]">
+                  <p className="truncate text-sm font-semibold text-slate-800">
                     {profile?.name || "Judi"}
                   </p>
 
-                  <p className="truncate text-[11px] text-[#999083]">
+                  <p className="truncate text-[11px] text-slate-400">
                     {profile?.role ||
                       "Frontend Developer"}
                   </p>
-
                 </div>
-
               </div>
-
             </div>
           </div>
         </div>
       )}
 
-      {/* =====================================================
-          DESKTOP SIDEBAR
-      ====================================================== */}
-
-      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 border-r border-[#E6E0D6] bg-[#FFFDF9] lg:block">
-
+      {/* Desktop Sidebar */}
+      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 border-r border-slate-200 bg-[#F8F6F1] lg:block">
         <div className="flex h-full flex-col">
-
-          {/* =================================================
-              LOGO
-          ================================================== */}
-
-          <div className="flex h-20 items-center border-b border-[#EEE9E0] px-6">
-
+          {/* Logo */}
+          <div className="flex h-20 items-center border-b border-slate-100 px-6">
             <div>
+              <h1 className="text-xl font-bold tracking-tight text-slate-900">
+                Codexa
+              </h1>
 
-              <div className="flex items-center gap-2">
-
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#302C26] text-xs font-bold text-[#F8F3E9]">
-                  C
-                </div>
-
-                <h1 className="text-xl font-bold tracking-tight text-[#292722]">
-                  Codexa
-                </h1>
-
-              </div>
-
-              <p className="ml-10 mt-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#9E9588]">
+              <p className="mt-0.5 text-[10px] font-medium uppercase tracking-widest text-slate-400">
                 Developer Workspace
               </p>
-
             </div>
-
           </div>
 
-          {/* =================================================
-              SEARCH
-          ================================================== */}
-
+          {/* Search */}
           <div className="px-4 pt-4">
-
             <button
               onClick={() => setSearchOpen(true)}
-              className="group flex w-full items-center gap-2 rounded-xl border border-[#E6DFD4] bg-[#F8F5EF] px-3 py-2.5 text-left transition duration-200 hover:border-[#D9CCBA] hover:bg-[#FFFDF9] hover:shadow-sm"
+              className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-left transition hover:border-slate-300 hover:bg-white"
             >
-
               <Search
                 size={16}
-                className="text-[#9A9082] transition group-hover:text-[#806B4D]"
+                className="text-slate-400"
               />
 
-              <span className="flex-1 text-xs text-[#9B9286]">
+              <span className="flex-1 text-xs text-slate-400">
                 Search...
               </span>
 
-              <kbd className="rounded-md border border-[#E2DBD0] bg-[#FFFDF9] px-1.5 py-0.5 text-[9px] font-semibold text-[#9B9286]">
+              <kbd className="rounded-md border border-slate-200 bg-white px-1.5 py-0.5 text-[9px] font-semibold text-slate-400">
                 Ctrl K
               </kbd>
-
             </button>
-
           </div>
 
-          {/* =================================================
-              NAVIGATION
-          ================================================== */}
-
+          {/* Navigation */}
           <nav className="flex-1 space-y-1 overflow-y-auto p-4">
-
-            <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#A39A8D]">
+            <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
               Workspace
             </p>
 
@@ -392,103 +333,69 @@ function Sidebar() {
                   key={name}
                   to={path}
                   className={({ isActive }) =>
-                    `group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition duration-200 ${
+                    `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
                       isActive
-                        ? "bg-[#F0E9DC] text-[#806B4D] shadow-[0_3px_12px_rgba(122,99,66,0.07)]"
-                        : "text-[#777064] hover:bg-[#F8F5EF] hover:text-[#39342D]"
+                        ? "bg-sky-50 text-sky-600"
+                        : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
                     }`
                   }
                 >
                   {({ isActive }) => (
                     <>
-
-                      {/* Active indicator */}
-
-                      {isActive && (
-                        <span className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-[#B49A72]" />
-                      )}
-
                       <Icon
                         size={18}
                         strokeWidth={
                           isActive ? 2.3 : 2
                         }
-                        className={`shrink-0 transition-transform duration-200 ${
-                          isActive
-                            ? ""
-                            : "group-hover:scale-105"
-                        }`}
+                        className="shrink-0"
                       />
 
                       <span>{name}</span>
-
-                      {isActive && (
-                        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[#B49A72]" />
-                      )}
-
                     </>
                   )}
                 </NavLink>
               )
             )}
-
           </nav>
 
-          {/* =================================================
-              USER
-          ================================================== */}
-
-          <div className="border-t border-[#EEE9E0] p-4">
-
-            <div className="group flex items-center gap-3 rounded-xl border border-[#E9E2D7] bg-[#F8F5EF] p-3 transition hover:bg-[#F3EEE5]">
-
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#302C26] text-sm font-bold text-[#F8F3E9] shadow-sm">
+          {/* User */}
+          <div className="border-t border-slate-100 p-4">
+            <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold text-white">
                 {getInitial(profile?.name)}
               </div>
 
               <div className="min-w-0">
-
-                <p className="truncate text-sm font-semibold text-[#3B362F]">
+                <p className="truncate text-sm font-semibold text-slate-800">
                   {profile?.name || "Judi"}
                 </p>
 
-                <p className="truncate text-[11px] text-[#999083]">
+                <p className="truncate text-[11px] text-slate-400">
                   {profile?.role ||
                     "Frontend Developer"}
                 </p>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
       </aside>
 
-      {/* =====================================================
-          SEARCH MODAL
-      ====================================================== */}
-
+      {/* Search Modal */}
       {searchOpen && (
         <div
-          className="fixed inset-0 z-[70] flex items-start justify-center bg-[#292722]/35 px-4 pt-[12vh] backdrop-blur-sm"
+          className="fixed inset-0 z-[70] flex items-start justify-center bg-slate-900/40 px-4 pt-[12vh] backdrop-blur-sm"
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) {
               closeSearch();
             }
           }}
         >
-
-          <div className="w-full max-w-2xl overflow-hidden rounded-[22px] border border-[#E4DDD2] bg-[#FFFDF9] shadow-[0_25px_70px_rgba(50,43,34,0.18)]">
-
+          <div className="w-full max-w-2xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
             {/* Search Input */}
-
-            <div className="flex items-center gap-3 border-b border-[#EEE8DE] px-4">
-
+            <div className="flex items-center gap-3 border-b border-slate-100 px-4">
               <Search
                 size={20}
-                className="text-[#9A9082]"
+                className="text-slate-400"
               />
 
               <input
@@ -498,56 +405,47 @@ function Sidebar() {
                   setSearch(e.target.value)
                 }
                 placeholder="Search pages, projects or skills..."
-                className="h-14 min-w-0 flex-1 bg-transparent text-sm text-[#3A352E] outline-none placeholder:text-[#AAA195]"
+                className="h-14 min-w-0 flex-1 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
               />
 
               <button
                 onClick={closeSearch}
-                className="rounded-lg p-1.5 text-[#9A9185] transition hover:bg-[#F2EEE7] hover:text-[#5B5144]"
+                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
               >
                 <X size={17} />
               </button>
-
             </div>
 
             {/* Results */}
-
             <div className="max-h-[60vh] overflow-y-auto p-3">
-
               {!search.trim() ? (
                 <div className="px-4 py-8 text-center">
-
                   <Search
                     size={24}
-                    className="mx-auto text-[#C5BBAE]"
+                    className="mx-auto text-slate-300"
                   />
 
-                  <p className="mt-3 text-sm font-semibold text-[#5B5348]">
+                  <p className="mt-3 text-sm font-semibold text-slate-600">
                     Search your workspace
                   </p>
 
-                  <p className="mt-1 text-xs text-[#A39A8D]">
+                  <p className="mt-1 text-xs text-slate-400">
                     Find pages, projects and skills quickly.
                   </p>
-
                 </div>
               ) : !hasResults ? (
                 <div className="px-4 py-8 text-center">
-
-                  <p className="text-sm font-semibold text-[#5B5348]">
+                  <p className="text-sm font-semibold text-slate-600">
                     No results found
                   </p>
 
-                  <p className="mt-1 text-xs text-[#A39A8D]">
+                  <p className="mt-1 text-xs text-slate-400">
                     Try a different keyword.
                   </p>
-
                 </div>
               ) : (
                 <div className="space-y-4">
-
                   {/* Pages */}
-
                   {pageResults.length > 0 && (
                     <ResultGroup title="Pages">
                       {pageResults.map(
@@ -571,7 +469,6 @@ function Sidebar() {
                   )}
 
                   {/* Projects */}
-
                   {projectResults.length > 0 && (
                     <ResultGroup title="Projects">
                       {projectResults.map(
@@ -597,7 +494,6 @@ function Sidebar() {
                   )}
 
                   {/* Skills */}
-
                   {skillResults.length > 0 && (
                     <ResultGroup title="Skills">
                       {skillResults.map((skill) => (
@@ -613,26 +509,20 @@ function Sidebar() {
                       ))}
                     </ResultGroup>
                   )}
-
                 </div>
               )}
-
             </div>
 
             {/* Footer */}
-
-            <div className="flex items-center justify-between border-t border-[#EEE8DE] bg-[#F8F5EF] px-4 py-3">
-
-              <p className="text-[10px] text-[#A39A8D]">
+            <div className="flex items-center justify-between border-t border-slate-100 bg-slate-50 px-4 py-3">
+              <p className="text-[10px] text-slate-400">
                 Press Esc to close
               </p>
 
-              <p className="text-[10px] font-semibold text-[#A39A8D]">
+              <p className="text-[10px] font-medium text-slate-400">
                 Codexa Search
               </p>
-
             </div>
-
           </div>
         </div>
       )}
@@ -640,30 +530,22 @@ function Sidebar() {
   );
 }
 
-/* =========================================================
-   RESULT GROUP
-========================================================= */
-
+/* Result Group */
 function ResultGroup({ title, children }) {
   return (
     <div>
-
-      <p className="mb-1 px-2 text-[10px] font-bold uppercase tracking-wider text-[#A39A8D]">
+      <p className="mb-1 px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
         {title}
       </p>
 
       <div className="space-y-1">
         {children}
       </div>
-
     </div>
   );
 }
 
-/* =========================================================
-   SEARCH RESULT
-========================================================= */
-
+/* Search Result */
 function Result({
   icon: Icon,
   title,
@@ -673,33 +555,26 @@ function Result({
   return (
     <button
       onClick={onClick}
-      className="group flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition duration-200 hover:bg-[#F6F2EA]"
+      className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition hover:bg-slate-50"
     >
-
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#E8E1D6] bg-[#F9F6F0] text-[#8E806D] transition group-hover:border-[#DDD1BE] group-hover:bg-[#F0E9DC] group-hover:text-[#806B4D]">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
         <Icon size={17} />
       </div>
 
       <div className="min-w-0">
-
-        <p className="truncate text-sm font-semibold text-[#4A443B]">
+        <p className="truncate text-sm font-semibold text-slate-700">
           {title}
         </p>
 
-        <p className="truncate text-xs text-[#A0988C]">
+        <p className="truncate text-xs text-slate-400">
           {subtitle}
         </p>
-
       </div>
-
     </button>
   );
 }
 
-/* =========================================================
-   AVATAR INITIAL
-========================================================= */
-
+/* Avatar Initial */
 function getInitial(name) {
   if (!name?.trim()) return "J";
 
