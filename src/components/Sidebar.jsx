@@ -189,7 +189,7 @@ function Sidebar() {
   return (
     <>
       {/* Mobile Header */}
-      <header className="fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between border-b border-slate-200 bg-[#b8a98b] px-4 lg:hidden">
+      <header className="fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between border-b border-slate-200 bg-white px-4 lg:hidden">
         <div>
           <h1 className="text-lg font-bold tracking-tight text-slate-900">
             Codexa
@@ -285,7 +285,7 @@ function Sidebar() {
       )}
 
       {/* Desktop Sidebar */}
-      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 border-r border-slate-200 bg-[#F8F6F1] lg:block">
+      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 border-r border-slate-200 bg-white lg:block">
         <div className="flex h-full flex-col">
           {/* Logo */}
           <div className="flex h-20 items-center border-b border-slate-100 px-6">

@@ -24,7 +24,7 @@ function MainApp() {
     }
 
     return (
-        <div className="min-h-screen bg-[#F8F6F1] text-[#292722]">
+        <div className="min-h-screen bg-slate-50 text-slate-900">
             <Sidebar />
 
             <main className="min-h-screen pt-16 lg:ml-64 lg:pt-0">
@@ -86,16 +86,19 @@ export default function App() {
         <BrowserRouter>
             <ToastProvider>
                 <Routes>
+                    {/* First page */}
                     <Route
                         path="/"
                         element={<Welcome />}
                     />
 
+                    {/* First-time profile setup */}
                     <Route
                         path="/setup"
                         element={<ProfileSetup />}
                     />
 
+                    {/* Main application */}
                     <Route
                         path="/*"
                         element={<MainApp />}
